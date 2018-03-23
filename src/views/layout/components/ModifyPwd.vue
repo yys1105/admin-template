@@ -5,16 +5,6 @@
     props: {
       visible: Boolean
     },
-    computed: {
-      dialogVisible: {
-        get: function () {
-          return this.visible
-        },
-        set: function (newValue) {
-          this.$emit('change-visible', newValue)
-        }
-      }
-    },
     data() {
       const validateRepeat = (rule, value, callback) => {
         if (value === '') {
@@ -43,7 +33,7 @@
         this.$refs['dataForm'].validate((valid) => {
           if (valid) {
             modifyPwd(this.modifyData).then(response => {
-              this.$emit('change-visible', false)
+              this.$emit('update:visible', false)
               this.$store.dispatch('FedLogOut').then(res => {
                 this.$router.push({ name: 'login' })
               })
@@ -59,7 +49,7 @@
       },
       handleClose() {
         this.$refs['dataForm'].resetFields()
-        this.$emit('change-visible', false)
+        this.$emit('update:visible', false)
       }
     }
   }
@@ -68,7 +58,7 @@
 <template>
   <el-dialog
     title="修改密码"
-    :visible.sync="dialogVisible"
+    :visible.sync="visible"
     width="30%"
     :before-close="handleClose">
     <el-form :rules="rules" ref="dataForm" :model="modifyData" label-position="left" label-width="100px">

@@ -34,9 +34,6 @@
       },
       modifyPwd() {
         this.dialogVisible = true
-      },
-      changeVisible(val) {
-        this.dialogVisible = val
       }
     }
   }
@@ -71,7 +68,7 @@
         </el-dropdown-menu>
       </el-dropdown>
 
-      <modify-pwd :visible.sync="dialogVisible" @change-visible="changeVisible"></modify-pwd>
+      <modify-pwd :visible.sync="dialogVisible"></modify-pwd>
     </div>
   </el-menu>
 </template>
